@@ -1,0 +1,47 @@
+* {
+  padding-left: 10px;
+}
+
+h2 {
+  color: black;
+  font-size: 2rem;
+  text-align: center;
+}
+
+h3 {
+  color: blue;
+  font-size: 2rem;
+  text-align: center;
+/*  text-decoration: underline; */
+}
+
+h4 {
+  color: blue;
+  font-size: 2rem;
+  text-align: center;
+  background-color: yellow;
+/*  text-decoration: underline; */
+}
+
+.informacionParaCotizar {
+  list-style-type: none;
+}
+
+.item {
+  display: inline;
+}
+
+.table tbody#table tr td {
+  vertical-align: middle;
+  display: table-cell;
+}
+
+a.borrarCotizacion {
+  background-color: rgb(211, 100, 100);
+  border-radius: 50%;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
