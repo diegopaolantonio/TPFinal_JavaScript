@@ -15,6 +15,15 @@ var cotizacion = {
 
 var cotizacionesRealizadas = [];
 
+function currencyFormatter({ currency, value }) {
+  const formatter = new Intl.NumberFormat("en-US", {
+    currency: "USD",
+    minimumFractionDigits: 2,
+    currency,
+  });
+  return formatter.format(value);
+}
+
 function escribirHistorico() {
   let infoReferencia = document.querySelector("#infoReferencia"),
     infoTrabajo = document.querySelector("#infoTrabajo"),
@@ -46,9 +55,13 @@ function escribirHistorico() {
   infoHoras.innerHTML = `${
     cotizacionesRealizadas[cotizacionesRealizadas.length - 1].horas
   }`;
-  infoCostoTotal.innerHTML = `${
+  infoCostoTotal.innerHTML = `${new Intl.NumberFormat('es-PE', {
+    style: 'decimal',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(
     cotizacionesRealizadas[cotizacionesRealizadas.length - 1].costoTotal
-  }`;
+  )}`;
 
   // escondemos el mensaje
   mensajeD.style.display = "block";
@@ -311,22 +324,33 @@ window.addEventListener("DOMContentLoaded", function () {
 
 function agregarCotizacion() {
   let totalCotizado = 0;
+
   tabla.innerHTML = ``;
   cotizacionesRealizadas.forEach((element, index) => {
     totalCotizado += element.costoTotal;
+
     tabla.innerHTML += `<tr>
              <td class="text-center">${element.referencia}</td>
              <td class="text-center">${element.trabajo}</td>
              <td class="text-center">${element.herramientas}</td>
-
-             <td class="text-center">USD${element.costoTotal}</td>
+             <td class="text-center">USD ${new Intl.NumberFormat('es-PE', {
+              style: 'decimal',
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2
+            }).format(element.costoTotal)}</td>
              <td class="text-center"><a href="#" id="${element.id}" class="borrarCotizacion" data-id="1">X</a></td>
            </tr>`;
   });
 
-  tabla.innerHTML += `<tr>
-  <td class="text-center">Total Cotizado: USD${totalCotizado}</td>
-  </tr>`;
+  const totalCotizadoFormateado = new Intl.NumberFormat('es-PE', {
+    style: 'decimal',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(totalCotizado);
+  
+  console.log(totalCotizadoFormateado);
+
+  infoTotalCotizado.innerHTML = `${totalCotizadoFormateado}`;
 
   // Seleccionamos el boton eliminar
   let buttonDelete = document.querySelectorAll(".borrarCotizacion");

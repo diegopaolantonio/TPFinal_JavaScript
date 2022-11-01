@@ -14,34 +14,35 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./css/style.css" />
   </head>
 
   <body>
-    <h1>Bienvenido al cotizador de costos de obra de EXPERTO INGENIERIA</h1>
-    <p>
-      Aqui podra calcular el costo total de nuestra mano de obra de programacion,
-      electicista y asesistencia tecnica,
-    </p>
-<!--    <p class="mb-0">Los datos que necesitara son:</p>
-    <ul class="informacionParaCotizar">
-      <li>Que personal necesita? Programador/Electricista/Asistencia Tecnica</li>
-      <li>Computadora/herramientas propias?</li>
-      <li>Cantidad de personas?</li>
-      <li>Cantidad de dias?</li>
-      <li>Cantidad de horas de jornada laboral?</li>
-    </ul>
--->
+    <h1 class="titulo">
+      Bienvenido al cotizador de costos de obra de EXPERTO INGENIERIA
+    </h1>
+    <div class="mensaje">
+      <p>
+        Aqui podra calcular el costo total de nuestra mano de obra de
+        programacion, electicista y asesistencia tecnica.
+      </p>
+      <p>
+        Muchas gracias por elegirnos, lo esperamos pronto nuevamente. Saludos
+        cordiales.
+      </p>
+    </div>
 
     <script src="assets/js/main.js"></script>
 
-    <p>
-      Muchas gracias por elegirnos, lo esperamos pronto nuevamente. Saludos
-      cordiales.
-    </p>
-
-    <div class="container my-5">
-      <form action="" method="POST" id="formulario" onsubmit="return false;">
+    <div>
+      <form
+        action=""
+        method="POST"
+        id="formulario"
+        class="formularioParaLlenar"
+        onsubmit="return false;"
+      >
+        <h2 class="tituloSecundario">Formulario para cotizar</h2>
+        <hr />
         <div class="form-group">
           <label for="referencia">Codigo Referencia</label>
           <input type="text" class="form-control" id="referencia" />
@@ -53,7 +54,10 @@
         </div>
 
         <div class="form-group">
-          <label for="trabajo">Tipo de trabajo (Programador/Electricista/Asistencia Tecnica)</label>
+          <label for="trabajo"
+            >Tipo de trabajo (Programador/Electricista/Asistencia
+            Tecnica)</label
+          >
           <input type="text" class="form-control" id="trabajo" />
           <div
             class="alert alert-danger my-2"
@@ -63,7 +67,9 @@
         </div>
 
         <div class="form-group">
-          <label for="herramientas">Computadora/herramientas propias? (Si/No)</label>
+          <label for="herramientas"
+            >Computadora/herramientas propias? (Si/No)</label
+          >
           <input type="text" class="form-control" id="herramientas" />
           <div
             class="alert alert-danger my-2"
@@ -110,11 +116,13 @@
         />
       </form>
 
-      <div class="alert alert-secondary my-5" role="alert" id="alerta">
-        <h3>Resultado de la Cotizacion</h3>
+      <div class="ultimaCotizacion" role="alert" id="alerta">
+        <!--alert alert-secondary my-5-->
+        <h2 class="tituloSecundario">Resultado de la ultima Cotizacion</h2>
         <hr />
         <p class="font-weight-bold">
-          Referencia: <span class="font-weight-light" id="infoReferencia"></span>
+          Referencia:
+          <span class="font-weight-light" id="infoReferencia"></span>
         </p>
 
         <p class="font-weight-bold">
@@ -122,7 +130,8 @@
         </p>
 
         <p class="font-weight-bold">
-          Herramientas: <span class="font-weight-light" id="infoHerramientas"></span>
+          Herramientas:
+          <span class="font-weight-light" id="infoHerramientas"></span>
         </p>
 
         <p class="font-weight-bold">
@@ -138,28 +147,34 @@
         </p>
 
         <p class="font-weight-bold">
-          Costo Total: <span class="font-weight-light" id="infoCostoTotal"></span>
+          Costo Total: USD 
+          <span class="font-weight-light" id="infoCostoTotal"></span>
         </p>
       </div>
     </div>
 
-    <div>
-    <table class="table">
-      <h2 class="text-center">Historico de cotizaciones</h2>
-      <thead>
-        <tr>
-          <th class="text-center" scope="col">Referencia</th>
-          <th class="text-center" scope="col">Trabajo</th>
-          <th class="text-center" scope="col">Herramientas</th>
-          <th class="text-center" scope="col">Costo Total</th>
-          <th class="text-center" scope="col">Borrar</th>
-        </tr>
-      </thead>
-      <tbody id="tabla">
-
-      </tbody>
-    </table>
-
+    <div class="historico">
+      <table class="table">
+        <h2 class="tituloSecundario">Historico de cotizaciones</h2>
+        <hr />
+        <thead>
+          <tr>
+            <th class="text-center" scope="col">Referencia</th>
+            <th class="text-center" scope="col">Trabajo</th>
+            <th class="text-center" scope="col">Herramientas</th>
+            <th class="text-center" scope="col">Costo Total</th>
+            <th class="text-center" scope="col">Borrar</th>
+          </tr>
+        </thead>
+        <tbody id="tabla"></tbody>
+      </table>
+      <div class="totalCotizado" role="alert" id="alerta">
+        <p class="font-weight-bold">
+          Total Cotizado: USD
+          <span class="font-weight-light" id="infoTotalCotizado"></span>
+        </p>
+      </div>
+    </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

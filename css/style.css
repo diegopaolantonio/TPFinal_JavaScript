@@ -1,18 +1,13 @@
 * {
-  padding-left: 10px;
+  margin: 0;
+  padding: 0;
 }
+
 
 h2 {
   color: black;
   font-size: 2rem;
   text-align: center;
-}
-
-h3 {
-  color: blue;
-  font-size: 2rem;
-  text-align: center;
-/*  text-decoration: underline; */
 }
 
 h4 {
@@ -44,4 +39,66 @@ a.borrarCotizacion {
   color: white;
   font-weight: bold;
   transition: all 0.3s ease-in-out;
+}
+
+
+
+
+
+.titulo {
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 7px;
+  color: green;
+  text-align: center;
+  background-color: ghostwhite;
+}
+
+.mensaje {
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 7px;
+  background-color: ghostwhite;
+}
+.mensaje p {
+  margin-bottom: 0px;
+}
+
+.formularioParaLlenar {
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 7px;
+  background-color: ghostwhite;
+}
+
+.tituloSecundario {
+  color: green;
+  font-size: 2rem;
+  text-align: center;
+/*  text-decoration: underline; */
+}
+
+.ultimaCotizacion {
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 7px;
+  background-color: ghostwhite;
+}
+
+.historico {
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 7px;
+  background-color: ghostwhite;
+}
+
+.totalCotizado {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
 }
