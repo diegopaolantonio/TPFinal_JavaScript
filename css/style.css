@@ -102,3 +102,7 @@ a.borrarCotizacion {
   font-weight: bold;
   text-align: center;
 }
+
+.boton {
+  display: inline-block;
+}

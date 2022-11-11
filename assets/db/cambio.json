@@ -1,0 +1,16 @@
+[
+    {
+        "tipo": "Dolar Divisas",
+        "categoria1": "Venta",
+        "valor1": "160.59",
+        "categoria2": "Compra",
+        "valor2": "160.24"
+    },
+    {
+        "tipo": "Dolar Blue",
+        "categoria1": "Venta",
+        "valor1": "291.00",
+        "categoria2": "Compra",
+        "valor2": "285.00"
+    }
+]

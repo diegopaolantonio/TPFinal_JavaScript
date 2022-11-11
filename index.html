@@ -31,8 +31,6 @@
       </p>
     </div>
 
-    <script src="assets/js/main.js"></script>
-
     <div>
       <form
         action=""
@@ -54,11 +52,13 @@
         </div>
 
         <div class="form-group">
-          <label for="trabajo"
-            >Tipo de trabajo (Programador/Electricista/Asistencia
-            Tecnica)</label
-          >
-          <input type="text" class="form-control" id="trabajo" />
+          <label for="trabajo" id="selectorTrabajo">Tipo de trabajo</label>
+          <br />
+          <div class="boton" id="trabajoProgId"></div>
+
+          <div class="boton" id="trabajoElectId"></div>
+
+          <div class="boton" id="trabajoAsistId"></div>
           <div
             class="alert alert-danger my-2"
             role="alert"
@@ -70,7 +70,12 @@
           <label for="herramientas"
             >Computadora/herramientas propias? (Si/No)</label
           >
-          <input type="text" class="form-control" id="herramientas" />
+          <br />
+          <div class="boton" id="herramientasSiId"></div>
+
+          <div class="boton" id="herramientasNoId"></div>
+
+          <!-- <input type="text" class="form-control" id="herramientas" /> -->
           <div
             class="alert alert-danger my-2"
             role="alert"
@@ -114,6 +119,7 @@
           id="submit"
           class="btn btn-primary"
         />
+        <input type="reset" id="reset" class="btn btn-primary" />
       </form>
 
       <div class="ultimaCotizacion" role="alert" id="alerta">
@@ -147,7 +153,7 @@
         </p>
 
         <p class="font-weight-bold">
-          Costo Total: USD 
+          Costo Total: USD
           <span class="font-weight-light" id="infoCostoTotal"></span>
         </p>
       </div>
@@ -173,8 +179,42 @@
           Total Cotizado: USD
           <span class="font-weight-light" id="infoTotalCotizado"></span>
         </p>
+        <p class="font-weight-bold">
+          Total Cotizado: ARS
+          <span class="font-weight-light" id="infoTotalCotizadoARS"></span>
+        </p>
       </div>
+      <div>
+        <form
+          action=""
+          method="POST"
+          id="formularioCambio"
+          class="formularioParaLlenar"
+          onsubmit="return false;"
+        >
+          <h2 class="tituloSecundario">Tipo de cambio a usar:</h2>
+
+          <div class="form-group">
+            <input type="float" class="form-control" id="cambioAUsar" />
+          </div>
+          <input
+            type="submit"
+            value="Cambio Ingresado"
+            id="submitCambio"
+            class="btn btn-primary"
+          />
+        </form>
+      </div>
+      <p class="text-center">
+        Para convertir de USD a ARS se utiliza el cambio de divisas de venta
+        publicado por BNA, se deja acontinuacion la referencia de los tipos de
+        cambio:
+      </p>
+      <div class="text-center" id="tiposCambioUSD"></div>
     </div>
+
+    <script src="assets/js/main.js"></script>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
