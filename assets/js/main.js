@@ -1,3 +1,4 @@
+// variables globales
 var costoTotal = 0;
 var precioHora = 0;
 var precioHoraHerr = 0;
@@ -21,6 +22,7 @@ var cotizacion = {
 
 var cotizacionesRealizadas = [];
 
+//Funcion para dar formato a resultado total
 function currencyFormatter({ currency, value }) {
   const formatter = new Intl.NumberFormat("en-US", {
     currency: "USD",
@@ -30,6 +32,7 @@ function currencyFormatter({ currency, value }) {
   return formatter.format(value);
 }
 
+//Funcion para agragar dato al array historico de cotizaciones
 function escribirHistorico() {
   let infoReferencia = document.querySelector("#infoReferencia"),
     infoTrabajo = document.querySelector("#infoTrabajo"),
@@ -43,6 +46,7 @@ function escribirHistorico() {
 
   console.log(cotizacionesRealizadas.length);
 
+  //Imprime el historico en el DOM
   infoReferencia.innerHTML = `${
     cotizacionesRealizadas[cotizacionesRealizadas.length - 1].referencia
   }`;
@@ -73,51 +77,62 @@ function escribirHistorico() {
   mensajeD.style.display = "block";
 }
 
+//Cambia de color el boton de trabajo seleccionado
 function costoHoraFunc() {
   if (precioHora == 20) {
-    trabajoProgId.innerHTML = `<input class="btn btn-secondary" type="button" value="Programador" id="trabajoProg">`;
+    document.getElementById("trabajoProg").style.backgroundColor = "gray";
   } else {
-    trabajoProgId.innerHTML = `<input class="btn btn-primary" type="button" value="Programador" id="trabajoProg">`;
+    document.getElementById("trabajoProg").style.backgroundColor = "blue";
   }
 
   if (precioHora == 15) {
-    trabajoElectId.innerHTML = `<input class="btn btn-secondary" type="button" value="Electricista" id="trabajoElect">`;
+    document.getElementById("trabajoElect").style.backgroundColor = "gray";
   } else {
-    trabajoElectId.innerHTML = `<input class="btn btn-primary" type="button" value="Electricista" id="trabajoElect">`;
+    document.getElementById("trabajoElect").style.backgroundColor = "blue";
   }
 
   if (precioHora == 14) {
-    trabajoAsistId.innerHTML = `<input class="btn btn-secondary" type="button" value="Asistencia Tecnica" id="trabajoAsist">`;
+    document.getElementById("trabajoAsist").style.backgroundColor = "gray";
   } else {
-    trabajoAsistId.innerHTML = `<input class="btn btn-primary" type="button" value="Asistencia Tecnica" id="trabajoAsist">`;
+    document.getElementById("trabajoAsist").style.backgroundColor = "blue";
   }
 
   console.log(precioHora);
 }
 
+//Cambia de color el boton de herramientas seleccionado
 function herramientasSiNo() {
   if (validaHerramientas == "Si") {
-    herramientasSiId.innerHTML = `<input class="btn btn-secondary" type="button" value="Si" id="herramientasSi">`;
+    document.getElementById("herramientasSi").style.backgroundColor = "gray";
   } else {
-    herramientasSiId.innerHTML = `<input class="btn btn-primary" type="button" value="Si" id="herramientasSi">`;
+    document.getElementById("herramientasSi").style.backgroundColor = "blue";
   }
 
   if (validaHerramientas == "No") {
-    herramientasNoId.innerHTML = `<input class="btn btn-secondary" type="button" value="No" id="herramientasNo">`;
+    document.getElementById("herramientasNo").style.backgroundColor = "gray";
   } else {
-    herramientasNoId.innerHTML = `<input class="btn btn-primary" type="button" value="No" id="herramientasNo">`;
+    document.getElementById("herramientasNo").style.backgroundColor = "blue";
   }
 
   console.log(validaHerramientas);
 }
 
+//Sincroniza el local storage
 function sincronizarConLocalStorage() {
   localStorage.setItem("cotizacion", JSON.stringify(cotizacionesRealizadas));
 }
 
+//Indica que el DOM ya se cargo
 window.addEventListener("DOMContentLoaded", function () {
   // NUEVO: Contenido cargado
   console.log("EL DOM SE CARGO");
+
+  Swal.fire({
+    title: "Cotizador listo para nuevos datos",
+    text: "",
+    icon: "success",
+    confirmButtonText: "Confirmar",
+  });
 
   cotizacionesRealizadas = JSON.parse(localStorage.getItem("cotizacion")) || [];
   agregarCotizacion();
@@ -127,6 +142,7 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+//Revisa que el dato sea numero
 const checkNumero = (val) => {
   let number = parseInt(val);
 
@@ -136,6 +152,7 @@ const checkNumero = (val) => {
   return true;
 };
 
+//Carga tipo de cambio desde un JSON local y lo imprime en pantalla
 const cargarTipoCambio = async () => {
   const datosFetch = await fetch("/assets/db/cambio.json")
     .then((resp) => resp.json())
@@ -146,10 +163,6 @@ const cargarTipoCambio = async () => {
   console.log(tiposCambio);
 
   tiposCambio.forEach((element, index) => {
-    // tiposCambioUSD.innerHTML += `<p>${element.tipo}</p>
-    // ${element.categoria1}  ${element.categoria2}</p>
-    // ${element.valor1}  ${element.valor2}</p>`;
-
     tiposCambioUSD.innerHTML += `<hr>
     <p>${element.tipo}</p>
     <table class="table">
@@ -169,6 +182,7 @@ const cargarTipoCambio = async () => {
   });
 };
 
+//Funcion de cotizacion
 function cotizador() {
   if (cotizacionesRealizadas.length > 0) {
     escribirHistorico();
@@ -255,7 +269,7 @@ function cotizador() {
       error_horas.innerHTML = ``;
     } else {
       error_horas.style.display = "block";
-      error_horas .innerHTML = `Debe ingresar solo numeros`;
+      error_horas.innerHTML = `Debe ingresar solo numeros`;
     }
   });
 
@@ -314,13 +328,21 @@ function cotizador() {
 
       agregarCotizacion();
 
+      escribirHistorico();
+
       document.location.reload();
 
       console.log(cotizacion);
       console.log(cotizaciones);
       console.log(cotizacionesRealizadas);
     } else {
-      alert("Debe llenar los campos");
+      Swal.fire({
+        title: "Error",
+        text: "Debe llenar los campos",
+        icon: "error",
+        confirmButtonText: "Confirmar",
+      });
+      //  alert("Debe llenar los campos");
     }
   });
 
@@ -337,30 +359,39 @@ function cotizador() {
 
     // guardamos datos que ingresamos en los input
     let cambioAUsar = document.querySelector("#cambioAUsar").value;
-  
-    totalCotizadoARS = totalCotizado*cambioAUsar;
+
+    totalCotizadoARS = totalCotizado * cambioAUsar;
 
     console.log(totalCotizado);
     console.log(cambioAUsar);
     console.log(totalCotizadoARS);
-    
+
     const totalCotizadoARSFormateado = new Intl.NumberFormat("es-PE", {
       style: "decimal",
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(totalCotizadoARS);
-    
+
     console.log(totalCotizadoARSFormateado);
-    
+
     infoTotalCotizadoARS.innerHTML = `${totalCotizadoARSFormateado}`;
-    
+  });
+
+  historicoId.addEventListener("reset", function (e) {
+    console.log("Yami");
+    localStorage.clear();
+    document.location.reload();
   });
 }
 
+//llamada de funcion
 cotizador();
 
+
+//imprime el historico y los totales cotizados
 function agregarCotizacion() {
   tabla.innerHTML = ``;
+  totalCotizado = 0;
   cotizacionesRealizadas.forEach((element) => {
     totalCotizado += element.costoTotal;
 
@@ -391,7 +422,7 @@ function agregarCotizacion() {
 
   console.log(totalCotizadoFormateado);
 
-  infoTotalCotizado.innerHTML += `${totalCotizadoFormateado}`;
+  infoTotalCotizado.innerHTML = `${totalCotizadoFormateado}`;
 
   // Seleccionamos el boton eliminar
   let buttonDelete = document.querySelectorAll(".borrarCotizacion");
@@ -414,8 +445,3 @@ function agregarCotizacion() {
 
   sincronizarConLocalStorage();
 }
-
-
-
-
-

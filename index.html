@@ -54,11 +54,32 @@
         <div class="form-group">
           <label for="trabajo" id="selectorTrabajo">Tipo de trabajo</label>
           <br />
-          <div class="boton" id="trabajoProgId"></div>
+          <div class="boton" id="trabajoProgId">
+            <input
+              class="btn btn-primary"
+              type="button"
+              value="Programador"
+              id="trabajoProg"
+            />;
+          </div>
 
-          <div class="boton" id="trabajoElectId"></div>
+          <div class="boton" id="trabajoElectId">
+            <input
+              class="btn btn-primary"
+              type="button"
+              value="Electricista"
+              id="trabajoElect"
+            />;
+          </div>
 
-          <div class="boton" id="trabajoAsistId"></div>
+          <div class="boton" id="trabajoAsistId">
+            <input
+              class="btn btn-primary"
+              type="button"
+              value="Asistencia Tecnica"
+              id="trabajoAsist"
+            />;
+          </div>
           <div
             class="alert alert-danger my-2"
             role="alert"
@@ -68,12 +89,26 @@
 
         <div class="form-group">
           <label for="herramientas"
-            >Computadora/herramientas propias? (Si/No)</label
+            >Computadora/herramientas propias?</label
           >
           <br />
-          <div class="boton" id="herramientasSiId"></div>
+          <div class="boton" id="herramientasSiId">
+            <input
+              class="btn btn-primary"
+              type="button"
+              value="Si"
+              id="herramientasSi"
+            />
+          </div>
 
-          <div class="boton" id="herramientasNoId"></div>
+          <div class="boton" id="herramientasNoId">
+            <input
+              class="btn btn-primary"
+              type="button"
+              value="No"
+              id="herramientasNo"
+            />
+          </div>
 
           <!-- <input type="text" class="form-control" id="herramientas" /> -->
           <div
@@ -174,12 +209,30 @@
         </thead>
         <tbody id="tabla"></tbody>
       </table>
+
+      <div>
+        <form
+          action=""
+          method="POST"
+          id="historicoId"
+          class="btn btn-primary"
+          onsubmit="return false;"
+        >
+          <input
+            type="reset"
+            value="Borrar Historial"
+            id="borrarHistorial"
+            class="btn btn-primary"
+          />
+        </form>
+      </div>
+
       <div class="totalCotizado" role="alert" id="alerta">
-        <p class="font-weight-bold">
+        <p class="font-weight-bold valorTotal">
           Total Cotizado: USD
           <span class="font-weight-light" id="infoTotalCotizado"></span>
         </p>
-        <p class="font-weight-bold">
+        <p class="font-weight-bold valorTotal">
           Total Cotizado: ARS
           <span class="font-weight-light" id="infoTotalCotizadoARS"></span>
         </p>
@@ -212,6 +265,8 @@
       </p>
       <div class="text-center" id="tiposCambioUSD"></div>
     </div>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="assets/js/main.js"></script>
 
